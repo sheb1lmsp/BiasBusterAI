@@ -1,3 +1,5 @@
 .ipynb*
 *.txt
 *.h5
+*.pkl
+__pycache__
