@@ -39,13 +39,12 @@ def predict(
     for layer in model.layers:
         # Check for the attention layer (assumes model.attention exists)
         if layer == model.attention:
-            attention = layer(attention)  # Apply attention layer to get context and weights
+            _, attention = layer(attention)  # Apply attention layer to get context and weights
             break
         attention = layer(attention)  # Apply current layer to intermediate input
 
     # Reshape outputs
     predictions = predictions[0]  # Shape: (num_classes,)
-    attention_weights = attention[1]  # Extract weights from attention layer output, shape: (max_len,)
 
     # Return predicted class index and reshaped attention weights
-    return predictions, tf.reshape(attention_weights, shape=(-1, 1))  # weights reshaped to (max_len, 1)
+    return predictions, tf.reshape(attention, shape=(-1, 1))  # weights reshaped to (max_len, 1)
