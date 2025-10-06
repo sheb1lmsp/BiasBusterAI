@@ -47,4 +47,4 @@ def predict(
     predictions = predictions[0]  # Shape: (num_classes,)
 
     # Return predicted class index and reshaped attention weights
-    return predictions, tf.reshape(attention, shape=(-1, 1))  # weights reshaped to (max_len, 1)
+    return predictions, tf.reshape(attention, shape=(-1))  # weights reshaped to (max_len)

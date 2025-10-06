@@ -32,4 +32,4 @@ def run_inference(text: str) -> np.ndarray:
     # Call predict function to predict the lables and get the attention weights
     pred, attention = predict(text, model, tokenizer, max_len)
     
-    return pred
+    return pred, attention
